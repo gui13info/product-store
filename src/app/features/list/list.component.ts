@@ -1,23 +1,26 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 
+import { ProductI } from '../../shared/interfaces/product.interface';
+import { ProductsService } from '../../shared/services/products.service';
+
 @Component({
-  selector: 'app-list',
-  standalone: true,
-  imports: [],
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+    selector: 'app-list',
+    standalone: true,
+    imports: [],
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.scss',
 })
 export class ListComponent {
-    public httpClient = inject(HttpClient);
-    public products: Array<any> = [];
+    public products: Array<ProductI> = [];
+    public productsService = inject(ProductsService);
+
     constructor() { }
-    
+
     ngOnInit(): void {
-        this.httpClient.get< Array<any>>('/api/products').subscribe({
-            next: (data: Array<any>) => {
+        this.productsService.getAllProducts().subscribe({
+            next: (data: Array<ProductI>) => {
                 this.products = data;
-            }
+            },
         });
     }
 }
