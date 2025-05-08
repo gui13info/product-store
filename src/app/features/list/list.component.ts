@@ -1,15 +1,13 @@
 import { Component, inject } from '@angular/core';
 
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-
+import { CardComponent } from './components/card/card.component';
 import { ProductI } from '../../shared/interfaces/product.interface';
 import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
     selector: 'app-list',
     standalone: true,
-    imports: [MatCardModule, MatButtonModule],
+    imports: [CardComponent],
     templateUrl: './list.component.html',
     styleUrl: './list.component.scss',
 })
